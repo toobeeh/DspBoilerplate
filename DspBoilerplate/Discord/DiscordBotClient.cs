@@ -3,6 +3,7 @@ using DSharpPlus.Commands;
 using DSharpPlus.Commands.Processors.SlashCommands;
 using DSharpPlus.Commands.Processors.TextCommands;
 using DSharpPlus.Commands.Processors.TextCommands.Parsing;
+using DSharpPlus.Interactivity.Extensions;
 using DspBoilerplate.Discord.Commands;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -28,6 +29,7 @@ public class DiscordBotClient(
     {
         logger.LogInformation("Starting Discord Bot Client");
 
+        _botClient.UseInteractivity();
 
         // use commands extension
         var commands = _botClient.UseCommands(new CommandsConfiguration
@@ -56,6 +58,7 @@ public class DiscordBotClient(
 
         // add command modules
         commands.AddCommands(typeof(BoilerplateCommands));
+        commands.AddCommands(typeof(ReproDmInteractionCommands));
 
         await _botClient.ConnectAsync();
     }
