@@ -33,7 +33,7 @@ public class DiscordBotClient(
         var commands = _botClient.UseCommands(new CommandsConfiguration
         {
             ServiceProvider = serviceProvider,
-            UseDefaultCommandErrorHandler = false,
+            UseDefaultCommandErrorHandler = true,
             RegisterDefaultCommandProcessors = false
         });
 
@@ -56,6 +56,7 @@ public class DiscordBotClient(
 
         // add command modules
         commands.AddCommands(typeof(BoilerplateCommands));
+        commands.AddCommands(typeof(NestedGroupCommands));
 
         await _botClient.ConnectAsync();
     }
