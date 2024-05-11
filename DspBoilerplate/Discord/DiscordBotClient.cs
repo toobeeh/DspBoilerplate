@@ -33,7 +33,7 @@ public class DiscordBotClient(
         var commands = _botClient.UseCommands(new CommandsConfiguration
         {
             ServiceProvider = serviceProvider,
-            UseDefaultCommandErrorHandler = false,
+            UseDefaultCommandErrorHandler = true,
             RegisterDefaultCommandProcessors = false
         });
 
